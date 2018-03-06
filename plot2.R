@@ -5,10 +5,10 @@ library("read.table")
 EPC<- read.table("./EDA_W1/household_power_consumption.txt",  
                  stringsAsFactors = FALSE, sep =";", header=TRUE)
 
-## convert Date class and subset
+## convert to Date class and subset
 EPC$Date <- as.Date(EPC$Date, "%d/%m/%Y")
 subset_EPC <- subset(EPC, Date== "2007-02-01"| Date=="2007-02-02")
-##create column datetime
+## create column datetime by combine Date and Time columns
 subset_EPC$datetime <- strptime(paste(subset_EPC$Date,subset_EPC$Time), 
                                 "%Y-%m-%d %H:%M:%S")
 
